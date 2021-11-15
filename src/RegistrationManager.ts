@@ -26,8 +26,11 @@ import {
 import { TxStoreManager } from './TxStoreManager';
 import { ServerAction } from './StoredTransaction';
 import chalk from 'chalk';
+import { IntString } from '@rsksmart/rif-relay-client';
 
 export interface RelayServerRegistryInfo {
+    baseRelayFee: IntString
+    pctRelayFee: number
     url: string;
 }
 
@@ -396,7 +399,7 @@ export class RegistrationManager {
                 ? ':' + this.config.port.toString()
                 : '');
         const registerMethod =
-            await this.contractInteractor.getRegisterRelayMethod(registerUrl);
+            await this.contractInteractor.getRegisterRelayMethod(this.config.baseRelayFee, this.config.pctRelayFee, registerUrl);
         const gasLimit = await this.transactionManager.attemptEstimateGas(
             'RegisterRelay',
             registerMethod,

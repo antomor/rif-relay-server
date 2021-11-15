@@ -218,6 +218,21 @@ export class RelayServer extends EventEmitter {
         }
     }
 
+    validateFees (req: RelayTransactionRequest | DeployTransactionRequest): void {
+        // if trusted paymaster, we trust it to handle fees
+        // TODO: check if we want to specify the paymaster also
+        // if (this._isTrustedPaymaster(req.relayRequest.relayData.paymaster)) {
+        //     return;
+        // }
+        // Check that the fee is acceptable
+        if (parseInt(req.relayRequest.relayData.pctRelayFee) < this.config.pctRelayFee) {
+            throw new Error(`Unacceptable pctRelayFee: ${req.relayRequest.relayData.pctRelayFee} relayServer's pctRelayFee: ${this.config.pctRelayFee}`);
+        }
+        if (toBN(req.relayRequest.relayData.baseRelayFee).lt(toBN(this.config.baseRelayFee))) {
+            throw new Error(`Unacceptable baseRelayFee: ${req.relayRequest.relayData.baseRelayFee} relayServer's baseRelayFee: ${this.config.baseRelayFee}`);
+        }
+    }
+
     validateVerifier(
         req: RelayTransactionRequest | DeployTransactionRequest
     ): void {
@@ -411,6 +426,7 @@ export class RelayServer extends EventEmitter {
             );
         }
         this.validateInput(req);
+        this.validateFees(req);
         await this.validateMaxNonce(req.metadata.relayMaxNonce);
 
         const { maxPossibleGas } = await this.validateRequestWithVerifier(req);
