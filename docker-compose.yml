@@ -4,9 +4,9 @@ services:
   rif-relay:
     build:
       context: .
-    # entrypoint: sh -c 'node dist/commands/Start.js --config server-config.testnet.json'
+    entrypoint: sh -c 'node dist/commands/Start.js --config server-config.testnet.json'
     # entrypoint: sh -c 'node dist/commands/Start.js --config server-config.json'
-    entrypoint: sh -c 'node dist/commands/Start.js --config server-config.docker.json'
+    # entrypoint: sh -c 'node dist/commands/Start.js --config server-config.docker.json'
     ports:
       - "8090:8090"
     volumes:

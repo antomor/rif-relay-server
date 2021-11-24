@@ -9,5 +9,5 @@
     "devMode": true,
     "customReplenish": false,
     "logLevel": 1,
-    "workdir": "/Users/antonioiovlabs/Dev/RIF_Relay/environment"
+    "workdir": "/srv/app/environment"
 }
