@@ -1,0 +1,13 @@
+{
+    "url": "http://localhost:8090",
+    "port": 8090,
+    "relayHubAddress": "0x5216249D46E6279EEBF59ec57dD1f70509510FDE",
+    "relayVerifierAddress": "0xA386dc6C349aF11dB7Da99101C6b83F346b1b233",
+    "deployVerifierAddress": "0xD95cb4Eae5Cd7830Cc7C99f0acF09b0aE866A4ca",
+    "gasPriceFactor": 1,
+    "rskNodeUrl": "http://172.17.0.1:4444",
+    "devMode": true,
+    "customReplenish": false,
+    "logLevel": 1,
+    "workdir": "/Users/antonioiovlabs/Dev/RIF_Relay/environment"
+}

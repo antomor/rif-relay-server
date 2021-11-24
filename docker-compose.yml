@@ -4,19 +4,15 @@ services:
   rif-relay:
     build:
       context: .
-    entrypoint: sh -c 'node dist/commands/Start.js --config server-config.json'
+    # entrypoint: sh -c 'node dist/commands/Start.js --config server-config.testnet.json'
+    # entrypoint: sh -c 'node dist/commands/Start.js --config server-config.json'
+    entrypoint: sh -c 'node dist/commands/Start.js --config server-config.docker.json'
     ports:
       - "8090:8090"
-    depends_on: 
-      - 'rif-relay-contracts'
+    volumes:
+      - "./environment:/srv/app/environment"
     networks:
       - rif-relay
-  
-  rif-relay-contracts:
-    build:
-      context: ./rif-relay-contracts       
-      dockerfile: Dockerfile      
-      #entrypoint: sh -c 'npm run deploy development'
 
 networks:
   rif-relay:
