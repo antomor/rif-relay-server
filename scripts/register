@@ -11,7 +11,7 @@ ACCOUNT=""
 
 function register() {
   echo "$@"
-  PARSED_ARGUMENTS=$(getopt -a alphabet -o h --long stake:,funds:,account:,mnemonic:,help -- "$@")
+  PARSED_ARGUMENTS=$(getopt -a -n alphabet -o h --long stake:,funds:,account:,mnemonic:,help -- "$@")
   VALID_ARGUMENTS=$?
   if [ "$VALID_ARGUMENTS" != "0" ]; then
     showUsage
