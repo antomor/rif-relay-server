@@ -2,8 +2,8 @@
 FROM node:12-alpine AS compiler
 RUN apk add --no-cache build-base git bash
 WORKDIR /usr/src/app
-COPY package*.json ./
-RUN npm i
+COPY package.json ./
+RUN npm i --cache /tmp/1
 COPY . ./
 # Runtime container
 FROM node:12-alpine
